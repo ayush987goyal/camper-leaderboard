@@ -1,4 +1,27 @@
 <div class="container">
+    <div class="row table-title">
+        Leaderboard
+    </div>
     <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-default table-header">
+                <tr>
+                    <th>#</th>
+                    <th>Camper Name</th>
+                    <th><a (click)="changeSorting(true)">Point in past 30 days<span class="glyphicon glyphicon-triangle-bottom" *ngIf="isRecent"></span></a></th>
+                    <th><a (click)="changeSorting(false)">All time points<span class="glyphicon glyphicon-triangle-bottom" *ngIf="!isRecent"></span></a></th>
+                </tr>
+            </thead>
+            <tbody class="body-master">
+                <tr *ngFor="let camper of mainCampers; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <th class="th-left">
+                        <a [href]='"https://www.freecodecamp.com/" + camper["username"]' target="_blank"><img [src]='camper["img"]'> {{camper["username"]}}</a>
+                    </th>
+                    <th>{{camper["recent"]}}</th>
+                    <th>{{camper["alltime"]}}</th>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
